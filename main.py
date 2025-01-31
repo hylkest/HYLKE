@@ -1,5 +1,3 @@
-from http.client import responses
-
 import requests
 from bs4 import BeautifulSoup
 
@@ -44,8 +42,6 @@ class Parser:
         except requests.RequestException as e:
             return f"Error at {url}: {e}"
 
-
-
 class WebScraper:
     def __init__(self, url_file):
         self.url_loader = URLLoader(url_file)
@@ -57,7 +53,6 @@ class WebScraper:
             title = self.title_fetcher.fetchTitle(url)
             links = self.title_fetcher.fetchLink(url)
             print(f"URL: {url}\nTitel: {title}\n")
-            print(f"URL: {url}\nLink: {links}")
 
 if __name__ == "__main__":
     scraper = WebScraper("save_data/urls.txt")
