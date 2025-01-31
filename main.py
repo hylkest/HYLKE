@@ -1,7 +1,9 @@
-from http.client import responses
-
 import requests
 from bs4 import BeautifulSoup
+
+# @TODO Links moeten opgeslagen worden.
+# @TODO De scraper moet de opgeslagen links opnieuw gebruiken maar mag niet 2x dezelfde link gebruiken.
+
 
 class URLLoader:
     def __init__(self, file_name):
@@ -57,7 +59,6 @@ class WebScraper:
             title = self.title_fetcher.fetchTitle(url)
             links = self.title_fetcher.fetchLink(url)
             print(f"URL: {url}\nTitel: {title}\n")
-            print(f"URL: {url}\nLink: {links}")
 
 if __name__ == "__main__":
     scraper = WebScraper("save_data/urls.txt")
