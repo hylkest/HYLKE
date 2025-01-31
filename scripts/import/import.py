@@ -7,7 +7,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--file", type=str, help="Filename")
 args = parser.parse_args()
 
-txtfile = open(f"{args.file}")
+
+with open(f'{args.file}', 'r') as txtfile:
+    urllist = txtfile.read().splitlines()
 
 load_dotenv()
 
@@ -22,9 +24,9 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 
 sql_query = "INSERT INTO links (url) VALUES (%s)"
-val = ("Test.nl",)
-mycursor.execute(sql_query, val)
+for url in urllist:
+    mycursor.execute(sql_query, (url,))
 
 mydb.commit()
 
-print("Data succesvol ingevoegd!")
+print(f"{len(urllist)} URLS added.")
