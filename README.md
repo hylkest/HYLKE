@@ -3,3 +3,7 @@ HYLKE is a python spider that scrapes the title and <br>links from webpages. Thi
 
 ## Technical information
 Python version: 3.9
+
+## Scripts
+To manually import new URLs into the database, use the following command<br>
+``python3 scripts/import/import.py --file [Path to txt file]``
