@@ -1,6 +1,13 @@
 import mysql.connector
 import os
 from dotenv import load_dotenv
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--file", type=str, help="Filename")
+args = parser.parse_args()
+
+txtfile = open(f"{args.file}")
 
 load_dotenv()
 
