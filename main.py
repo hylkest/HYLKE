@@ -32,7 +32,7 @@ class Parser:
                 for a in soup.find_all('a', href=True):
                     links.append(a['href'])
 
-                links_file = open("links.txt", "a")
+                links_file = open("save_data/links.txt", "a")
                 for x in links:
                     if x.startswith("https://") or x.startswith("http://"):
                         links_file.write(f"{x}\n")
@@ -60,5 +60,5 @@ class WebScraper:
             print(f"URL: {url}\nLink: {links}")
 
 if __name__ == "__main__":
-    scraper = WebScraper("urls.txt")
+    scraper = WebScraper("save_data/urls.txt")
     scraper.scrape()
