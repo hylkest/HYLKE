@@ -8,7 +8,16 @@ mydb = mysql.connector.connect(
     host=os.getenv("SQL_HOST"),
     user=os.getenv("SQL_USERNAME"),
     password=os.getenv("SQL_PASSWORD"),
+    database="HYLKE",
     port=3306
 )
 
-print(mydb)
+mycursor = mydb.cursor()
+
+sql_query = "INSERT INTO links (url) VALUES (%s)"
+val = ("Test.nl",)
+mycursor.execute(sql_query, val)
+
+mydb.commit()
+
+print("Data succesvol ingevoegd!")

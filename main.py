@@ -1,10 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 
-# @TODO Links moeten opgeslagen worden.
-# @TODO De scraper moet de opgeslagen links opnieuw gebruiken maar mag niet 2x dezelfde link gebruiken.
-
-
 class URLLoader:
     def __init__(self, file_name):
         self.file_name = file_name
@@ -45,8 +41,6 @@ class Parser:
                 print('Error getting URL')
         except requests.RequestException as e:
             return f"Error at {url}: {e}"
-
-
 
 class WebScraper:
     def __init__(self, url_file):
