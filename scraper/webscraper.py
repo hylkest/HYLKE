@@ -11,10 +11,12 @@ class WebScraper:
     def scrape(self):
         urls = self.url_loader.load()
         for url in urls:
-            title = self.parser.fetch_title(url)
+            titles = self.parser.fetch_title(url)
             links = self.parser.fetch_links(url)
 
-            print(f"URL: {url}\nTitel: {title}\n")
+            print(f"URL: {url}\nTitel: {titles}\n")
 
             for link in links:
-                self.database.insert_link(link)
+                self.database.insert_link(url, link)
+
+            self.database.insert_pagetitle(url, titles)

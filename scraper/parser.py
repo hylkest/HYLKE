@@ -7,7 +7,8 @@ class Parser:
             response = requests.get(url)
             if response.status_code == 200:
                 soup = BeautifulSoup(response.text, 'html.parser')
-                return soup.title.string if soup.title else "Geen titel gevonden"
+                title = soup.title.string if soup.title else "Geen titel gevonden"
+                return str(title)
             else:
                 return f"Fout bij ophalen van {url}: {response.status_code}"
         except requests.RequestException as e:
