@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import re
 
 class Parser:
     def fetch_title(self, url):
@@ -27,3 +28,20 @@ class Parser:
                 return []
         except requests.RequestException:
             return []
+
+    def fetch_metadata(self, url):
+        response = requests.get(url)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+
+            meta_tag = soup.find("meta", attrs={"name": "description"})
+            if meta_tag:
+                meta_data = meta_tag.get("content", "")
+                if meta_data:
+                    return [
+                        meta_data
+                    ]
+                else:
+                    return
+            else:
+                return

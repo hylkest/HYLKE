@@ -1,6 +1,7 @@
 from scraper.urlloader import URLLoader
 from scraper.parser import Parser
 from scraper.database import Database
+import time
 
 class WebScraper:
     def __init__(self, url_file):
@@ -13,10 +14,11 @@ class WebScraper:
         for url in urls:
             titles = self.parser.fetch_title(url)
             links = self.parser.fetch_links(url)
-
-            print(f"URL: {url}\nTitel: {len(titles)}\n")
+            metadata = self.parser.fetch_metadata(url)
+            time.sleep(1)
 
             for link in links:
                 self.database.insert_link(url, link)
 
             self.database.insert_pagetitle(url, titles)
+            self.database.insert_metadata(url, metadata)

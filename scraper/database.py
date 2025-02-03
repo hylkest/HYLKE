@@ -32,3 +32,10 @@ class Database:
         except mysql.connector.Error as err:
             print(f"Database error: {err}")
 
+    def insert_metadata(self, url, metadata):
+        sql_query = "INSERT INTO meta (url, meta_title, meta_description) VALUES (%s, %s, %s)"
+        try:
+            self.mycursor.execute(sql_query, (url, "test", metadata))
+            self.mydb.commit()
+        except mysql.connector.Error as err:
+            print(f"Database error: {err}")
