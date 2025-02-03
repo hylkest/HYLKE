@@ -20,16 +20,15 @@ class Database:
         try:
             self.mycursor.execute(sql_query, (base_url, url,))
             self.mydb.commit()
-            print(f"Link opgeslagen in database: {url}")
         except mysql.connector.Error as err:
-            print(f"Databasefout: {err}")
+            print(f"Database error: {err}")
 
     def insert_pagetitle(self, url, pagetitle):
         sql_query = "INSERT INTO pagetitle (pagetitle, url) VALUES (%s, %s)"
         try:
             self.mycursor.execute(sql_query, (pagetitle,url,))
             self.mydb.commit()
-            print(f"DONEDONE: {url}")
+            print(f"Done scraping: {url}")
         except mysql.connector.Error as err:
-            print(f"Databasefout: {err}")
+            print(f"Database error: {err}")
 
