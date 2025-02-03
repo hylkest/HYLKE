@@ -14,7 +14,7 @@ class WebScraper:
             titles = self.parser.fetch_title(url)
             links = self.parser.fetch_links(url)
 
-            print(f"URL: {url}\nTitel: {titles}\n")
+            print(f"URL: {url}\nTitel: {len(titles)}\n")
 
             for link in links:
                 self.database.insert_link(url, link)
