@@ -38,9 +38,7 @@ class Parser:
             if meta_tag:
                 meta_data = meta_tag.get("content", "")
                 if meta_data:
-                    return [
-                        meta_data
-                    ]
+                    return meta_data
                 else:
                     return
             else:
