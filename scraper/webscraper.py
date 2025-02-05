@@ -14,7 +14,7 @@ class WebScraper:
         for url in urls:
             titles = self.parser.fetch_title(url)
             links = self.parser.fetch_links(url)
-            metadata = self.parser.fetch_metadata(url)
+            metadata = self.parser.fetch_metadescription(url)
             time.sleep(1)
 
             for link in links:

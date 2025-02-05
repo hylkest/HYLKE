@@ -29,7 +29,22 @@ class Parser:
         except requests.RequestException:
             return []
 
-    def fetch_metadata(self, url):
+    def fetch_metadescription(self, url):
+        response = requests.get(url)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+
+            meta_tag = soup.find("meta", attrs={"name": "description"})
+            if meta_tag:
+                meta_data = meta_tag.get("content", "")
+                if meta_data:
+                    return meta_data
+                else:
+                    return
+            else:
+                return
+
+    def fetch_metatitle(self, url):
         response = requests.get(url)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, 'html.parser')
