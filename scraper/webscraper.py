@@ -14,11 +14,13 @@ class WebScraper:
         for url in urls:
             titles = self.parser.fetch_title(url)
             links = self.parser.fetch_links(url)
-            metadata = self.parser.fetch_metadescription(url)
+            metadesc = self.parser.fetch_metadescription(url)
+            metatitle = self.parser.fetch_metatitle(url)
             time.sleep(1)
 
             for link in links:
                 self.database.insert_link(url, link)
 
             self.database.insert_pagetitle(url, titles)
-            self.database.insert_metadata(url, metadata)
+            self.database.insert_metadata(url,metatitle, metadesc)
+            print(metatitle)

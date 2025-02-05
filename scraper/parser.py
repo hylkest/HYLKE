@@ -34,7 +34,7 @@ class Parser:
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, 'html.parser')
 
-            meta_tag = soup.find("meta", attrs={"name": "description"})
+            meta_tag = soup.find("meta", attrs={"name": "description"}) or soup.find("meta", attrs={"property": "og:description"})
             if meta_tag:
                 meta_data = meta_tag.get("content", "")
                 if meta_data:
@@ -49,9 +49,9 @@ class Parser:
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, 'html.parser')
 
-            meta_tag = soup.find("meta", attrs={"name": "description"})
-            if meta_tag:
-                meta_data = meta_tag.get("content", "")
+            meta_title = soup.find("meta", attrs={"name": "title"}) or soup.find("meta", attrs={"property": "og:title"})
+            if meta_title:
+                meta_data = meta_title.get("content", "")
                 if meta_data:
                     return meta_data
                 else:
