@@ -15,6 +15,11 @@ class Database:
         )
         self.mycursor = self.mydb.cursor()
 
+    def get_urls(self):
+        sql_query = "SELECT url FROM links"
+        self.mycursor.execute(sql_query)
+        return [row[0] for row in self.mycursor.fetchall()]
+
     def insert_link(self, base_url, url):
         sql_query = """
         INSERT INTO links (base_url, url)
